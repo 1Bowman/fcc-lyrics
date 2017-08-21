@@ -32,10 +32,9 @@ def printing(artist, title, save, lyrics):
 
 
 def check_for_bad_words(lyrics, return_object):
-    swear_words = ['fuck', 'shit', 'asshole', 'dick', 'piss', ' cunt ', 'cocksucker', 'tits ', 'goddamn', 'nigga', 'nigger']
+    swear_words = ['fuck', 'shit', 'asshole', 'dick', 'piss', ' cunt ', 'cock', 'tits ', 'goddamn', 'nigga', 'nigger']
     swear_count = 0
 
-    # swear_count += lyrics.count('fuck')
     for word in swear_words:
         current_word = lyrics.count(word)
         swear_count += current_word
