@@ -30,11 +30,12 @@ def printing(artist, title, lyrics):
 
 
 def check_for_bad_words(lyrics, return_object):
-    swear_words = ['fuck', 'shit', 'asshole', 'dick', 'piss', ' cunt ', 'cock', 'tits ', 'goddamn', 'nigga', 'nigger', 'pussy']
+    swear_words = ['fuck', 'shit', 'asshole', 'dick', 'piss', ' cunt ', 'cock', 'tits ', 'goddamn', 'nigga', 'nigger', 'pussy', 'pussies', ' cum']
     swear_count = 0
+    lowercased_lyrics = lyrics.lower()
 
     for word in swear_words:
-        current_word = lyrics.count(word)
+        current_word = lowercased_lyrics.count(word)
         swear_count += current_word
 
         if current_word > 0:
@@ -43,13 +44,3 @@ def check_for_bad_words(lyrics, return_object):
 
     print(return_object)
     return swear_count, return_object
-
-
-# if __name__ == "__main__":
-#     # while True:
-#     input_artist = 'snoop dogg'
-#     input_song = 'ginandjuice'
-#     # input_artist = str(input('artist > '))
-#     # input_song = str(input('song title > '))
-#     print(input_artist, input_song)
-#     generating(input_artist, input_song)
