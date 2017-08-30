@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SwearList from './SwearList'
 import { Button, FormGroup, FormControl, Col } from 'react-bootstrap'
 
 class App extends Component {
@@ -65,7 +66,7 @@ class App extends Component {
         </Col>
         <Col xs={12} sm={6}>
           <div>
-            { this.renderSwears() }
+            <SwearList {...this.state.response}/>
           </div>
         </Col>
       </div>
