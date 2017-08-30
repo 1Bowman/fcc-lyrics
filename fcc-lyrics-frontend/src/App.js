@@ -1,28 +1,40 @@
 import React, { Component } from 'react'
 import { Button, FormGroup, FormControl } from 'react-bootstrap'
 
-const requestCall = async() => {
-  const res = await fetch('http://localhost:5000/api/v1/lmfao/shots')
-  const json_res = await res.json()
-  return json_res
-}
-
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
       'artist': '',
-      'song': '',
+      'title': '',
       'response': {},
     }
   }
 
-  async componentDidMount(){
-    try{
-        const json_response = await requestCall()
-        console.log(json_response)
-    } catch (error) {
-      console.log(error)
+  async requestCall() {
+    const res = await fetch(`http://localhost:5000/api/v1/${this.state.artist}/${this.state.title}`)
+    const json_res = await res.json()
+    console.log(json_res)
+    this.setState({
+      'response': json_res,
+    })
+  }
+
+  handleChange(event) {
+    const fieldName = event.target.name
+    const fieldValue = event.target.value
+    this.setState({
+      [fieldName]: fieldValue
+    })
+  }
+
+  renderSwears(){
+    if(this.state.response.swears){
+      const swears = Object.entries(this.state.response.swears)
+
+      return swears.map(([key, value]) => {
+        return <p key={key}>{key} - {value}</p>
+      })
     }
   }
 
@@ -35,17 +47,20 @@ class App extends Component {
         <div>
           <form>
             <FormGroup>
-              <FormControl type="text" placeholder="Artist"></FormControl>
+              <FormControl name="artist" type="text" placeholder="Artist" onChange={this.handleChange.bind(this)}></FormControl>
             </FormGroup>
 
             <FormGroup>
-              <FormControl type="text" placeholder="Song Title"></FormControl>
+              <FormControl name="title" type="text" placeholder="Song Title" onChange={this.handleChange.bind(this)}></FormControl>
             </FormGroup>
 
             <FormGroup>
-              <Button bsStyle="primary" onClick={() => console.log('clicked')}>Search</Button>
+              <Button bsStyle="primary" onClick={() => this.requestCall()}>Search</Button>
             </FormGroup>
           </form>
+        </div>
+        <div>
+          { this.renderSwears() }
         </div>
       </div>
     );
