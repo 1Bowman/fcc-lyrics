@@ -17,10 +17,10 @@ def processing(generate_url, artist, title):
         lyrics = [x.getText() for x in lyrics]
         return printing(artist, title, lyrics)
     except urllib.error.HTTPError:
-        print('404: not found')
+        return {'error': 1}
 
 def printing(artist, title, lyrics):
-    return_object = {'artist': artist, 'title': title, 'swears': {}}
+    return_object = {'artist': artist, 'title': title, 'swears': {}, 'error': 0}
     for x in lyrics:
         swear_count, return_object = check_for_bad_words(x, return_object)
 
