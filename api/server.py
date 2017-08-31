@@ -1,5 +1,5 @@
 from flask import Flask, json, request
-from .api.v1.lyricservice import generating
+from .v1.lyricservice import generating
 app = Flask(__name__)
 
 @app.route('/api/v1/<artist>/<song_title>', methods=['GET'])
