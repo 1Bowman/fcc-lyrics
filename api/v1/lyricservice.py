@@ -30,6 +30,7 @@ def printing(artist, title, lyrics):
 
 
 def check_for_bad_words(lyrics, return_object):
+    # List of words not allowed on the radio.  This felt awkard to write, forgive me whoever reads this.
     swear_words = ['fuck', 'shit', 'asshole', 'dick', 'piss', ' cunt ', 'cock', 'tits ', 'goddamn', 'nigga', 'nigger', 'pussy', 'pussies', ' cum']
     swear_count = 0
     lowercased_lyrics = lyrics.lower()
